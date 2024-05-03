@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDFUSION DIAGNOSTIC HUB</title>
+    <style>
+        body {
+            background-image: url('https://wallpapers.com/images/hd/plain-background-0aqx3e65vih1xev1.jpg'); /* Add your background image URL here */
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0b0b0b;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .container {
+            text-align: center;
+            padding-top: 100px;
+            color: white;
+        }
+        .button {
+            display: inline-block;
+            background-color: #7b2716; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 9px #510505;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background-color: #952c87;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        .button:active {
+            background-color: #fc00da;
+            box-shadow: 0 2px #666;
+            transform: translateY(2px);
+        }
+        .img-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .scan-button img {
+            width: 150px; /* Adjust image size */
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MEDFUSION DIAGNOSTIC HUB</h1>
+        <h2>INTEGRATING DEEP LEARNING MODELS FOR ENHANCED PREDICTIVE INSIGHTS IN MEDICAL IMAGING</h2>
+    </header>
+    <div class="container">
+        <h2>About Us</h2>
+        <p>Welcome to Medfusion Diagnostic Hub, your one-stop destination for advanced medical imaging diagnostics powered by deep learning models. Our platform offers state-of-the-art predictive insights for various medical conditions based on MRI scans, X-rays, and CT scans.</p>
+        <p>With our cutting-edge technology, we aim to revolutionize medical diagnostics, providing faster and more accurate results to healthcare professionals and patients alike.</p>
+        <h2>Select Scan Type:</h2>
+        <div class="img-container">
+            <form action="/mri" method="get" class="scan-button">
+                <button type="submit" class="button"><img src="https://cdn-icons-png.flaticon.com/512/504/504317.png" alt="MRI Scan"><br>MRI Scan</button>
+            </form>
+            <form action="/xray" method="get" class="scan-button">
+                <button type="submit" class="button"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/X-rays_chest_icon.svg/1024px-X-rays_chest_icon.svg.png" alt="X-ray"><br>X-ray</button>
+            </form>
+            <form action="/ct" method="get" class="scan-button">
+                <button type="submit" class="button"><img src="https://cdn-icons-png.flaticon.com/512/4349/4349166.png" alt="CT Scan"><br>CT Scan</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>Contact us:vtu20602@veltech.edu.in| Phone: 9515082973</p>
+    </footer>
+</body>
+</html>

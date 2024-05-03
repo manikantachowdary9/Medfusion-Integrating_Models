@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-ray Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        #xray-image {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MEDFUSION DIAGNOSTIC HUB</h1>
+        <p>INTEGRATING DEEP LEARNING MODELS FOR ENHANCED PREDICTIVE INSIGHTS IN MEDICAL IMAGING</p>
+    </header>
+    
+    <div class="container">
+        <h2 style="font-size: 36px;">Upload X-ray Image</h2>
+        <form id="xray-form" enctype="multipart/form-data">
+            <input type="file" id="xray-image-input" accept="image/*" required>
+            <br>
+            <button type="button" onclick="predict()">Predict</button>
+        </form>
+        <div class="prediction" id="xray-prediction"></div>
+        <img id="xray-image" src="#" alt="Uploaded X-ray Image" style="display: none;">
+    </div>
+
+    <footer>
+        <p>Contact us: vtu20602@veltech.edu.in </p>
+    </footer>
+
+    <script>
+        function predict() {
+            const fileInput = document.getElementById('xray-image-input');
+            const xrayImage = document.getElementById('xray-image');
+            const predictionDiv = document.getElementById('xray-prediction');
+
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    xrayImage.src = reader.result;
+                    xrayImage.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+
+                // Make an AJAX request to the Flask endpoint for prediction
+                const formData = new FormData();
+                formData.append('xray_image', file);
+
+                fetch('/predict_xray', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(prediction => {
+                    predictionDiv.innerHTML = 'Prediction: ' + prediction.result;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
